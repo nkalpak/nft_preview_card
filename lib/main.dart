@@ -14,91 +14,100 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Outfit'),
       home: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          padding: EdgeInsets.all(16),
           color: CustomColors.veryDarkBlueMain,
-          child: Card(
-            color: CustomColors.veryDarkBlueCard,
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    child: Image.asset('assets/images/image-equilibrium.jpg'),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Equilibrium #3429',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Our Equilibrium collection promotes balance and calm.',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        color: CustomColors.softBlue,
-                        fontSize: 18),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      CurrencyLabel(
-                          label: 'ETH',
-                          value: 0.041,
-                          icon: SvgPicture.asset(
-                              'assets/images/icon-ethereum.svg')),
-                      Spacer(),
-                      IconLabel(
-                          icon: Icon(
-                            Icons.access_time_filled,
-                            color: CustomColors.softBlue,
-                          ),
-                          label: Text(
-                            '3 days left',
-                            style: TextStyle(
-                                fontSize: 18, color: CustomColors.softBlue),
-                          ))
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Divider(
+          child: NftCardWrapper(
+            children: [
+              ClipRRect(
+                child: Image.asset('assets/images/image-equilibrium.jpg'),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Equilibrium #3429',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Our Equilibrium collection promotes balance and calm.',
+                style: TextStyle(
+                    fontWeight: FontWeight.w300,
                     color: CustomColors.softBlue,
-                  ),
-                  SizedBox(height: 8),
+                    fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  CurrencyLabel(
+                      label: 'ETH',
+                      value: 0.041,
+                      icon:
+                          SvgPicture.asset('assets/images/icon-ethereum.svg')),
+                  Spacer(),
                   IconLabel(
-                      icon: Container(
-                        child: CircleAvatar(
-                          foregroundImage:
-                          AssetImage('assets/images/image-avatar.png'),
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(999),
-                          border: Border.all(color: Colors.white70)
-                        ),
+                      icon: Icon(
+                        Icons.access_time_filled,
+                        color: CustomColors.softBlue,
                       ),
-                      label: RichText(
-                        text: TextSpan(
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w300),
-                            children: [
-                              TextSpan(
-                                  text: 'Creation of ',
-                                  style:
-                                      TextStyle(color: CustomColors.softBlue)),
-                              TextSpan(text: 'Jules Wyvern')
-                            ]),
+                      label: Text(
+                        '3 days left',
+                        style: TextStyle(
+                            fontSize: 18, color: CustomColors.softBlue),
                       ))
                 ],
               ),
-            ),
+              SizedBox(height: 8),
+              Divider(
+                color: CustomColors.softBlue,
+              ),
+              SizedBox(height: 8),
+              IconLabel(
+                  icon: Container(
+                    child: CircleAvatar(
+                      foregroundImage:
+                          AssetImage('assets/images/image-avatar.png'),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(999),
+                        border: Border.all(color: Colors.white70)),
+                  ),
+                  label: RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w300),
+                        children: [
+                          TextSpan(
+                              text: 'Creation of ',
+                              style: TextStyle(color: CustomColors.softBlue)),
+                          TextSpan(text: 'Jules Wyvern')
+                        ]),
+                  ))
+            ],
           ),
         ),
       ),
     );
+  }
+}
+
+class NftCardWrapper extends StatelessWidget {
+  final List<Widget> children;
+
+  NftCardWrapper({Key? key, required this.children}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        color: CustomColors.veryDarkBlueCard,
+        child: Padding(
+            padding: EdgeInsets.all(32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            )));
   }
 }
 
